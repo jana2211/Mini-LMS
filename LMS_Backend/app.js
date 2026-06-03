@@ -11,8 +11,18 @@ const app = express();
 app.use(helmet({
     crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
+const allowedOrigins = [
+    process.env.FRONTEND_URL || 'http://localhost:5173',
+    'http://localhost:5174'
+];
+
 app.use(cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+        callback(new Error('CORS policy does not allow access from the specified Origin.'));
+    },
     credentials: true
 }));
 app.use(express.json());

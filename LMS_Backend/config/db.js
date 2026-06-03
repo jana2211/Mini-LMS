@@ -6,7 +6,7 @@ const useWindowsAuth = !process.env.DB_USER || process.env.DB_USER.trim() === ''
 const config = {
     server: process.env.DB_SERVER || 'localhost\\SQLEXPRESS',
     database: process.env.DB_NAME || 'MiniLMS',
-    port: parseInt(process.env.DB_PORT) || 1433,
+    port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : undefined,
     options: {
         encrypt: false,
         trustServerCertificate: true,
@@ -16,7 +16,7 @@ const config = {
 
 // Only add user/password when NOT using Windows Auth
 if (!useWindowsAuth) {
-    config.user     = process.env.DB_USER;
+    config.user = process.env.DB_USER;
     config.password = process.env.DB_PASSWORD;
 }
 
