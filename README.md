@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Mini LMS - Final Integrated Version 🎓
 
 Welcome to the official repository for the **Mini Learning Management System**. This project was developed as the final submission for the **CSE 301 — Database Systems Project**.
@@ -78,3 +79,6 @@ npm run dev
 
 ---
 **Developed for Mini Engineering - CSE Department.**
+=======
+# Mini-LMS
+>>>>>>> 4f791719448c61b65dfdf2f2cabe2b60dbbb5fbf
