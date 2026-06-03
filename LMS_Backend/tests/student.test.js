@@ -17,7 +17,7 @@ jest.mock('../config/db', () => ({
             input: jest.fn().mockReturnThis(),
             query: jest.fn().mockImplementation((q) => {
                 if (q.includes('Submission WHERE AssignmentID')) return Promise.resolve({ recordset: [] });
-                return Promise.resolve({ recordset: [ { id: 1, name: 'Mock Data', CourseName: 'C1', TotalClasses: 10, AttendedClasses: 8, SubmissionID: 1, Status: 'Pending', courseCount: 5, pendingCount: 2 } ] });
+                return Promise.resolve({ recordset: [ { id: 1, name: 'Mock Data', CourseName: 'C1', TotalClasses: 10, AttendedClasses: 8, SubmissionID: 1, Status: 'Pending', courseCount: 5, pendin[...]
             })
         })
     })
@@ -88,7 +88,7 @@ describe('Student API', () => {
             const res = await request(app)
                 .post('/api/student/assignments/submit')
                 .set('Authorization', `Bearer ${token}`)
-                .send({ assignmentId: 1 }); // Changed from assignmentID to assignmentId
+                .send({ assignmentID: 1 });
             
             // We mocked the DB so the logic should process successfully
             expect(res.status).toBe(200);
