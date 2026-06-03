@@ -101,6 +101,12 @@ const updateAssignmentSchema = z.object({
     maxScore: z.union([z.string(), z.number()]).optional()
 });
 
+// ===== Student Schemas =====
+const submitAssignmentSchema = z.object({
+    assignmentId: z.union([z.string(), z.number()]),
+    submissionContent: z.string().optional()
+});
+
 // ===== Assistant Schemas =====
 const instructorGradeSubmissionSchema = z.object({
     submissionId: z.union([z.string(), z.number()]),
@@ -159,6 +165,6 @@ module.exports = {
     addAssistantSchema, addStudentSchema, enrollStudentSchema, assignAssistantSchema,
     createCourseSchema, addWeekSchema, addMaterialSchema, addLectureSchema, createAssignmentSchema, updateAssignmentSchema, createAnnouncementSchema,
     instructorGradeSubmissionSchema, assistantGradeSubmissionSchema, idParamSchema,
-    updateProfileSchema,
+    updateProfileSchema, submitAssignmentSchema,
     validate, validateParams
 };
