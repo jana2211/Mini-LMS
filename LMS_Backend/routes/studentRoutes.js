@@ -21,7 +21,7 @@ const { getDiscussionPosts, createDiscussionPost, getDiscussionReplies, createDi
 // All routes require Student role
 router.use(verifyToken, requireRole('Student'));
 
-const { validate, updateProfileSchema } = require('../middleware/validation');
+const { validate, updateProfileSchema, submitAssignmentSchema } = require('../middleware/validation');
 
 // ===== Dashboard & Profile =====
 router.get('/dashboard', getDashboard);
@@ -38,7 +38,7 @@ router.get('/courses/:courseId/quizzes', requireEnrollment, getCourseQuizzes);
 
 // ===== Assignments =====
 router.get('/assignments', getAssignments);
-router.post('/assignments/submit', upload.single('file'), requireEnrollment, submitAssignment);
+router.post('/assignments/submit', upload.single('file'), validate(submitAssignmentSchema), requireEnrollment, submitAssignment);
 
 // ===== Grades =====
 router.get('/grades', getGrades);
