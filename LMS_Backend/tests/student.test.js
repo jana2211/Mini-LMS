@@ -75,11 +75,11 @@ describe('Student API', () => {
     });
 
     describe('POST /api/student/assignments/submit', () => {
-        it('should require assignmentID', async () => {
+        it('should require assignmentId', async () => {
             const res = await request(app)
                 .post('/api/student/assignments/submit')
                 .set('Authorization', `Bearer ${token}`)
-                .send({}); // Missing assignmentID
+                .send({}); // Missing assignmentId
             
             expect(res.status).toBe(400);
         });
@@ -88,7 +88,7 @@ describe('Student API', () => {
             const res = await request(app)
                 .post('/api/student/assignments/submit')
                 .set('Authorization', `Bearer ${token}`)
-                .send({ assignmentID: 1 });
+                .send({ assignmentId: 1 });
             
             // We mocked the DB so the logic should process successfully
             expect(res.status).toBe(200);
